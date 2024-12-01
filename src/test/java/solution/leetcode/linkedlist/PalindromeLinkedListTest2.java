@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import solution.leetcode.factory.ListNodeFactory;
 import solution.leetcode.types.ListNode;
 
 public class PalindromeLinkedListTest2 {
@@ -24,23 +25,13 @@ public class PalindromeLinkedListTest2 {
         assertThat(actual).isEqualTo(expected);
     }
 
-    private static ListNode createList(int[] values) {
-        ListNode root = new ListNode();
-        ListNode node = root;
-        for (int value : values) {
-            node.next = new ListNode(value);
-            node = node.next;
-        }
-        return root.next;
-    }
-
     private static Stream<Arguments> provider() {
         return Stream.of(
-            Arguments.of(createList(new int[] {1, 2, 2, 1}), true),
-            Arguments.of(createList(new int[] {1, 2}), false),
-            Arguments.of(createList(new int[] {}), true),
-            Arguments.of(createList(new int[] {1}), true),
-            Arguments.of(createList(new int[] {1, 2, 3, 2, 1}), true)
+            Arguments.of(ListNodeFactory.toListNode(new int[] {1, 2, 2, 1}), true),
+            Arguments.of(ListNodeFactory.toListNode(new int[] {1, 2}), false),
+            Arguments.of(ListNodeFactory.toListNode(new int[] {}), true),
+            Arguments.of(ListNodeFactory.toListNode(new int[] {1}), true),
+            Arguments.of(ListNodeFactory.toListNode(new int[] {1, 2, 3, 2, 1}), true)
         );
     }
 }
